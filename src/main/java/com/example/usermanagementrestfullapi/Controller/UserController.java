@@ -36,8 +36,10 @@ public class UserController {
     }
 
     @PostMapping("")
-    public ResponseEntity<?> createUser(){
-        return null;
+    public ResponseEntity<?> createUser(@RequestBody User userRequest){
+
+        UserDto user = userService.postUser(userRequest);
+        return ResponseEntity.status(HttpStatus.OK).body(user);
     }
     @PutMapping("/{id}")
     public ResponseEntity<?> updateUser(){
