@@ -15,6 +15,6 @@ public List<UserDto> getSearchUser(String keyword);
 public UserDto postUser(User user);
 
 public UserDto updateUser(String id ,User user);
-//pulic UserDto deleteUser(User user);
+public UserDto deleteUser(String id);
 
 }

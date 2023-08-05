@@ -56,12 +56,6 @@ public class UserServiceImpl implements UserService {
         }
         return result;
     }
-
-//    @Override
-//    public UserDto postUser(UserRequest userRequest) {
-//        return null;
-//    }
-
         @Override
     public UserDto postUser(User userRequest) {
         User newUser = new User(userRequest.getId(), userRequest.getName(), userRequest.getEmail(), userRequest.getPhone(), userRequest.getAvatar(), userRequest.getPassword());
@@ -74,24 +68,24 @@ public class UserServiceImpl implements UserService {
     public UserDto updateUser(String id ,User userRequest) {
         User newUser = new User(id, userRequest.getName(), userRequest.getEmail(), userRequest.getPhone(), userRequest.getAvatar(), userRequest.getPassword());
         UserDto userDto = UserMapper.toUserDto(newUser);
-//        System.out.println(id);
-//        for(User user: users){
-//            if(user.getId() == id){
-//                return users.set
-//            }
-//            users.set(users.get(), newUser);
-//        }
         for(int i = 0; i < users.size(); i++){
             if(users.get(i).getId().equals(id)){
                 users.set(i, newUser);
-
                 return userDto;
             }
-//            System.out.println(users.get(i).);
         }
 
-//        System.out.println(users);
         return userDto;
+    }
+
+    @Override
+    public UserDto deleteUser(String id) {
+        for(int i = 0; i < users.size(); i++){
+            if(users.get(i).getId().equals(id)){
+                return UserMapper.toUserDto(users.remove(i));
+            }
+        }
+        return null;
     }
 
 }
