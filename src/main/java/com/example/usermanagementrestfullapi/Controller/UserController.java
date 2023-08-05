@@ -22,6 +22,13 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(users);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<?> searchUser(@RequestParam( name = "keyword", required = false, defaultValue = "") String name){
+        List<UserDto> users = userService.getSearchUser(name);
+        return ResponseEntity.ok(users);
+    }
+
+
     @GetMapping("/{id}")
     public ResponseEntity<?> getUserById(@PathVariable int id){
         UserDto user = userService.getUserById(id);

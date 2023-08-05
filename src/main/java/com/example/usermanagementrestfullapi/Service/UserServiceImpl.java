@@ -1,6 +1,7 @@
 package com.example.usermanagementrestfullapi.Service;
 
 import com.example.usermanagementrestfullapi.Entity.User;
+import com.example.usermanagementrestfullapi.Exception.NotFoundException;
 import com.example.usermanagementrestfullapi.Model.dto.UserDto;
 import com.example.usermanagementrestfullapi.Model.mapper.UserMapper;
 import org.springframework.stereotype.Component;
@@ -35,6 +36,18 @@ public class UserServiceImpl implements UserService {
                 return UserMapper.toUserDto(user);
             }
         }
-        return null;
+        throw new NotFoundException("This user does not exist in the system");
+//        return null;
+    }
+
+    @Override
+    public List<UserDto> getSearchUser(String keyword) {
+        List<UserDto> result = new ArrayList<UserDto>();
+        for (User user: users){
+            if(user.getName().contains(keyword)){
+                result.add(UserMapper.toUserDto(user));
+            }
+        }
+        return result;
     }
 }
