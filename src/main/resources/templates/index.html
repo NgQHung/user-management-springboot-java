@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<h1>Home page</h1>
+<a href="/login">Login</a><br/>
+<a href="/register">Register</a><br/>
+<a href="/logout">Log out</a><br/>
+<th:block th:if="${user !=null}">
+    <a href="/logout" th:text="|Logout as ${user.fullName} |">Logout</a><br/>
+    <a href="/admin" >Admin</a><br/>
+</th:block>
+<th:block th:if="${user ==null}">
+    <a href="/logout">Logout</a></br>
+    <a href="/register">Register</a><br/>
+</th:block>
+</body>
+</html>
